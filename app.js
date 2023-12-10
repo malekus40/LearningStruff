@@ -146,4 +146,4 @@ function addProp(obj, k , v){
 }
 
 const res = addProp(team,'happy', ':)')
-const addProp = (obj, k, v) => ({...obj,[k]: v})
+const addProp2 = (obj, k, v) => ({...obj,[k]: v});
