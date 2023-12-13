@@ -8,7 +8,7 @@
 
 const allLis = document.querySelectorAll('li');
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-
+//gfg
 allLis.forEach((li,i) => {
     const color = colors[i];
     li.style.color = color;
