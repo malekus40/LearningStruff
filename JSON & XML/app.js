@@ -29,32 +29,55 @@
 // firstReq.send();
 // console.log('Request Sent!');
 
-const checkStatusAndParse = (responce) => {
-    if (!responce.ok) {
-        throw new Error(`Status Code Error: ${responce.status}`);
-    }
-    return responce.json();
-};
+// const checkStatusAndParse = (responce) => {
+//     if (!responce.ok) {
+//         throw new Error(`Status Code Error: ${responce.status}`);
+//     }
+//     return responce.json();
+// };
 
-const printPlanets = (data) => {
-    console.log("fetched next 10 planets");
+// const printPlanets = (data) => {
+//     console.log("fetched next 10 planets");
+//     for (let planet of data.results) {
+//         console.log(planet.name);
+//     }
+//     return Promise.resolve(data.next);
+// };
+
+// const fetchNextPlanet = (url = 'https://swapi.dev/api/planets/') => {
+//     return fetch(url);
+// };
+
+// fetchNextPlanet()
+//     .then(checkStatusAndParse)
+//     .then(printPlanets)
+//     .then(fetchNextPlanet)
+//     .then(checkStatusAndParse)
+//     .then(printPlanets)
+//     .catch((err) => {
+//         console.log("somehting went wrong");
+//         console.log(err);
+//     });
+const fetchNextPlanet = (url = 'https://swapi.dev/api/planets/') => {
+    return axios.get(url);
+};
+const printPlanets = ({ data }) => {
+    console.log(data);
     for (let planet of data.results) {
         console.log(planet.name);
     }
     return Promise.resolve(data.next);
 };
-
-const fetchNextPlanet = (url = 'https://swapi.dev/api/planets/') => {
-    return fetch(url);
-};
-
 fetchNextPlanet()
-    .then(checkStatusAndParse)
     .then(printPlanets)
     .then(fetchNextPlanet)
-    .then(checkStatusAndParse)
     .then(printPlanets)
+    .then(printPlanets)
+    .then(fetchNextPlanet)
+    .then(printPlanets)
+    .then(fetchNextPlanet)
+    .then(printPlanets)
+    .then(fetchNextPlanet)
     .catch((err) => {
-        console.log("somehting went wrong");
-        console.log(err);
+        console.log('ERROR!!', err);
     });
